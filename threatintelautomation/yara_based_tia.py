@@ -94,5 +94,12 @@ def scan_file(rules: yara.Rules, file_path: str, timeout: int = 10) -> List[Dict
 
 if __name__ == "__main__":
     rules = compile_yara_rules(YARA_DIR)
-    out = scan_file(rules, "./sample/sample", timeout=10)
+    
+    # Test both sample files
+    print("=== Scanning ./sample/sample ===")
+    out = scan_file(rules, "./sample/sample", timeout=100)
     print(json.dumps(out, indent=2))
+    
+    print("\n=== Scanning ./sample/sample.bat ===")
+    out_bat = scan_file(rules, "./sample/sample.bat", timeout=100)
+    print(json.dumps(out_bat, indent=2))
